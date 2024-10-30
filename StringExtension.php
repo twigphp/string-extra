@@ -15,17 +15,20 @@ use Symfony\Component\String\AbstractUnicodeString;
 use Symfony\Component\String\Inflector\EnglishInflector;
 use Symfony\Component\String\Inflector\FrenchInflector;
 use Symfony\Component\String\Inflector\InflectorInterface;
+use Symfony\Component\String\Inflector\SpanishInflector;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\String\UnicodeString;
+use Twig\Error\RuntimeError;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 final class StringExtension extends AbstractExtension
 {
     private $slugger;
-    private $frenchInflector;
     private $englishInflector;
+    private $spanishInflector;
+    private $frenchInflector;
 
     public function __construct(?SluggerInterface $slugger = null)
     {
@@ -79,10 +82,15 @@ final class StringExtension extends AbstractExtension
     private function getInflector(string $locale): InflectorInterface
     {
         switch ($locale) {
-            case 'fr':
-                return $this->frenchInflector ?? $this->frenchInflector = new FrenchInflector();
             case 'en':
                 return $this->englishInflector ?? $this->englishInflector = new EnglishInflector();
+            case 'es':
+                if (!class_exists(SpanishInflector::class)) {
+                    throw new RuntimeError('SpanishInflector is not available.');
+                }
+                return $this->spanishInflector ?? $this->spanishInflector = new SpanishInflector();
+            case 'fr':
+                return $this->frenchInflector ?? $this->frenchInflector = new FrenchInflector();
             default:
                 throw new \InvalidArgumentException(\sprintf('Locale "%s" is not supported.', $locale));
         }
