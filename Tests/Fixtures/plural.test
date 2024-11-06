@@ -5,6 +5,8 @@
 {{ 'partition'|plural('fr', all=true)|join(',') }}
 {{ 'person'|plural('fr') }}
 {{ 'person'|plural('en', all=true)|join(',') }}
+{{ 'avión'|plural('es') }}
+{{ 'avión'|plural('es', all=true)|join(',') }}
 
 --DATA--
 return []
@@ -13,3 +15,5 @@ partitions
 partitions
 persons
 persons,people
+aviones
+aviones
