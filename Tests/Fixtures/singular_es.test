@@ -1,0 +1,13 @@
+--TEST--
+"singular" filter
+--CONDITION--
+class_exists('Symfony\Component\String\Inflector\SpanishInflector')
+--TEMPLATE--
+{{ 'personas'|singular('es') }}
+{{ 'personas'|singular('es', all=true)|join(',') }}
+
+--DATA--
+return []
+--EXPECT--
+persona
+persona

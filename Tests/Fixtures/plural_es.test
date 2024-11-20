@@ -1,0 +1,13 @@
+--TEST--
+"plural" filter
+--CONDITION--
+class_exists('Symfony\Component\String\Inflector\SpanishInflector')
+--TEMPLATE--
+{{ 'avión'|plural('es') }}
+{{ 'avión'|plural('es', all=true)|join(',') }}
+
+--DATA--
+return []
+--EXPECT--
+aviones
+aviones
