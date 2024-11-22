@@ -7,8 +7,6 @@
 {{ 'persons'|singular('en', all=true)|join(',') }}
 {{ 'people'|singular('en') }}
 {{ 'people'|singular('en', all=true)|join(',') }}
-{{ 'personas'|singular('es') }}
-{{ 'personas'|singular('es', all=true)|join(',') }}
 
 --DATA--
 return []
@@ -19,5 +17,3 @@ person
 person
 person
 person
-persona
-persona
