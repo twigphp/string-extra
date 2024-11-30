@@ -82,6 +82,7 @@ final class StringExtension extends AbstractExtension
                 if (!class_exists(SpanishInflector::class)) {
                     throw new RuntimeError('SpanishInflector is not available.');
                 }
+
                 return $this->spanishInflector ?? $this->spanishInflector = new SpanishInflector();
             case 'fr':
                 return $this->frenchInflector ?? $this->frenchInflector = new FrenchInflector();
